@@ -31,37 +31,6 @@ public class test {
 		return a;
 	}
 	
-	public static class Appointment {
-		private String name;
-		private int price;
-		private int duration;
-		private String description;
-		
-		public int getDuration() {
-			return duration;
-		}
 
-		public String getDescription() {
-			return description;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public int getPrice() {
-			return price;
-		}
-	
-		public String toString(){
-			String ans = "[";
-			ans += "Name: " + name;
-			ans += "\nPrice: " + price;
-			ans += "\nDuration: " + duration;
-			ans += "\nDescription: " + description;
-			ans += "]\n";
-			return ans;
-		}
-	}
 
 }

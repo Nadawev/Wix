@@ -1,6 +1,10 @@
 package protocol;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import barber.Calender;
 import tokenizer.StringMessage;
@@ -26,24 +30,37 @@ public class EchoProtocol implements AsyncServerProtocol<StringMessage> {
 	@Override
 	public void processMessage(StringMessage msg, ProtocolCallback<StringMessage> callback) {        
 		String result="UNIDENTIFIED";
-		String optional="";
-		boolean msgProcessed = true;
 		switch (msg.getCommand()){
 		
 			case "say":
 				try {
-					callback.sendMessage(new StringMessage("SERVER " + msg.getParam()));
+					callback.sendMessage(new StringMessage("SERVER " + msg.getParam()+ " " + msg.getSecondParam()));
 				} catch (IOException e) {e.printStackTrace();}
 				break;
 			
-			case "ooriya":
-				try {
-					callback.sendMessage(new StringMessage("ooriya is a yemen" ));
-				} catch (IOException e) {e.printStackTrace();}
-				break;
 			
 			case "print":
 				result = Calender.getInstance().printAppointments();
+				try {
+					callback.sendMessage(new StringMessage(result));
+				} catch (IOException e) {e.printStackTrace();}
+				break;
+				
+			case "test":
+				DateFormat formatter = new SimpleDateFormat("HH:mm");
+				Time timeValue;
+				try {
+					timeValue = new Time(formatter.parse(msg.getSecondParam()).getTime());
+					result = Calender.getInstance().addAppointment(msg.getParam(), timeValue);
+				} catch (ParseException e1) {
+					result = "error time parse";
+				}
+				try {
+					callback.sendMessage(new StringMessage(result));
+				} catch (IOException e) {e.printStackTrace();}
+				break;
+				
+			default:
 				try {
 					callback.sendMessage(new StringMessage(result));
 				} catch (IOException e) {e.printStackTrace();}

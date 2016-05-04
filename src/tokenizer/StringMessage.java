@@ -28,7 +28,7 @@ public class StringMessage implements Message<StringMessage> {
 	public String getCommand(){
 		if (message.contains(" "))
 			return message.substring(0,message.indexOf(" "));
-		return message;
+		return message.substring(0,message.length()-1);
 	}
 	
 	/**
@@ -37,9 +37,22 @@ public class StringMessage implements Message<StringMessage> {
 	 * returns "null" if the parameter is empty
 	 */
 	public String getParam(){
-		if (message.indexOf(" ")!=-1)
-			return message.substring(message.indexOf(" ")+1);
-		else
-			return "null";
+		String s = "";
+		if (message.indexOf(" ")!=-1){
+			s = message.substring(message.indexOf(" ")+1);
+			if(s.indexOf(" ") != -1)
+				s = s.substring(0,s.indexOf(" "));
+		}
+		return s;
+	}
+	
+	public String getSecondParam(){
+		String s = "";
+		if (message.indexOf(" ")!=-1){
+			s = message.substring(message.indexOf(" ")+1);
+			if(s.indexOf(" ") != -1)
+				return s.substring(s.indexOf(" ")+1);
+		}
+		return s;
 	}
 }

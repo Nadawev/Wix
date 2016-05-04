@@ -1,7 +1,5 @@
 package barber;
 
-import barber.test.Appointment;
-
 public class JsonObject {
 	private Appointment[] appointment;
 

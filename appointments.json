@@ -1,6 +1,6 @@
 {
 	"appointment": [{
-		"name": "Man cut",
+		"name": "Man-cut",
 		"price": 50,
 		"duration": 20,
 		"description": "Hair cut for men"
@@ -8,19 +8,19 @@
 		"name": "Fan",
 		"price": 150,
 		"duration": 40,
-		"description": "Fan hair straightner"
+		"description": "Fan hair straightener"
 	}, {
-		"name": "Girls cut",
+		"name": "Girls-cut",
 		"price": 100,
 		"duration": 30,
 		"description": "Hair cut for girls"
 	}, {
-		"name": "Woman cut",
+		"name": "Woman-cut",
 		"price": 200,
 		"duration": 60,
 		"description": "Hair cut for women"
 	}, {
-		"name": "boy cut",
+		"name": "Boy-cut",
 		"price": 40,
 		"duration": 25,
 		"description": "Hair cut for boys"
