@@ -39,7 +39,7 @@ public class Calender {
 		}
 	}
 	
-	public String addAppointment(String str, Time t){
+	public synchronized String addAppointment(String str, Time t){
 		Appointment a = searchForCut(str);
 		if(calender.get(t)!=null && a != null){
 			for(int i=t.getHours(); i<=t.getHours()+a.getHours(); i++){
@@ -69,14 +69,14 @@ public class Calender {
 		return SingletoneHolder.instance;
 	}
 	
-	public String printAppointments(){
+	public synchronized String printAppointments(){
 		String ans = "";
 		for(int i=0; i<appointments.length; i++)
 			ans += appointments[i] + "\n";
 		return ans;
 	}
 
-	public String getFreeTime() {
+	public synchronized String getFreeTime() {
 		String ans = "Free hours:\n";
 		Time start = new Time(0,0,0);
 		boolean notFound = true;

@@ -33,6 +33,7 @@ public class EchoProtocol implements AsyncServerProtocol<StringMessage> {
 		switch (msg.getCommand()){
 		
 			case "say":
+				System.out.println("Got say");
 				try {
 					callback.sendMessage(new StringMessage("SERVER " + msg.getParam()+ " " + msg.getSecondParam()));
 				} catch (IOException e) {e.printStackTrace();}
@@ -40,6 +41,7 @@ public class EchoProtocol implements AsyncServerProtocol<StringMessage> {
 			
 			
 			case "print":
+				System.out.println("Got print");
 				result = Calender.getInstance().printAppointments();
 				try {
 					callback.sendMessage(new StringMessage(result));
@@ -47,6 +49,7 @@ public class EchoProtocol implements AsyncServerProtocol<StringMessage> {
 				break;
 				
 			case "set":
+				System.out.println("Got set");
 				DateFormat formatter = new SimpleDateFormat("HH:mm");
 				Time timeValue;
 				try {
@@ -61,6 +64,7 @@ public class EchoProtocol implements AsyncServerProtocol<StringMessage> {
 				break;
 				
 			case "free":
+				System.out.println("Got free");
 				result= Calender.getInstance().getFreeTime();
 				try {
 					callback.sendMessage(new StringMessage(result));
