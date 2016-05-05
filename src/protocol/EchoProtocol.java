@@ -46,7 +46,7 @@ public class EchoProtocol implements AsyncServerProtocol<StringMessage> {
 				} catch (IOException e) {e.printStackTrace();}
 				break;
 				
-			case "test":
+			case "set":
 				DateFormat formatter = new SimpleDateFormat("HH:mm");
 				Time timeValue;
 				try {
@@ -55,6 +55,13 @@ public class EchoProtocol implements AsyncServerProtocol<StringMessage> {
 				} catch (ParseException e1) {
 					result = "error time parse";
 				}
+				try {
+					callback.sendMessage(new StringMessage(result));
+				} catch (IOException e) {e.printStackTrace();}
+				break;
+				
+			case "free":
+				result= Calender.getInstance().getFreeTime();
 				try {
 					callback.sendMessage(new StringMessage(result));
 				} catch (IOException e) {e.printStackTrace();}

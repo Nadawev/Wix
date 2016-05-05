@@ -75,5 +75,38 @@ public class Calender {
 			ans += appointments[i] + "\n";
 		return ans;
 	}
-	
+
+	public String getFreeTime() {
+		String ans = "Free hours:\n";
+		Time start = new Time(0,0,0);
+		boolean notFound = true;
+		Time end = new Time(0,0,0);
+		while(true){
+			for(int i=end.getHours(); i<24 && notFound; i++){
+				for (int j=end.getMinutes(); j<60 && notFound; j++){
+					Time temp = new Time(i,j,0);
+					if(calender.get(temp).isEmpty()){
+						start = temp;
+						notFound = false;
+					}
+				}
+			}
+			for(int i=start.getHours(); i<24 && !notFound; i++){
+				for (int j=start.getMinutes(); j<60 && !notFound; j++){
+					Time temp = new Time(i,j,0);
+					if(!calender.get(temp).isEmpty()){
+						end = temp;
+						notFound = true;
+					}
+				}
+			}
+			if(notFound)
+				ans += start + "-" + end + "\n";
+			else{
+				ans += start + "-00:00\n";
+				break;
+			}
+		}
+		return ans;
+	}
 }
